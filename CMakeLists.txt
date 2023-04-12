@@ -20,14 +20,14 @@ add_executable(usb_keypad
 
 target_include_directories(usb_keypad PRIVATE
     ./include
-    )
+)
 
 # Link the pico-sdk and tinyusb libraries
 target_link_libraries(usb_keypad 
     pico_stdlib
     tinyusb_device 
     tinyusb_board
-    )
+)
 
 # Create map/bin/hex/uf2 files
-pico_add_extra_outputs(usb_keypad)
+pico_add_extra_outputs(usb_keypad
