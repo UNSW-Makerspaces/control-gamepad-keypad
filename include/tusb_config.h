@@ -1,3 +1,7 @@
+// Author: Michael W. Lloyd <micl_dev@protonmail.com>
+// 
+// Last Modified: 13/04/23
+
 #ifndef _TUSB_CONFIG_H_
 #define _TUSB_CONFIG_H_
 
