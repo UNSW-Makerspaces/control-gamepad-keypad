@@ -97,7 +97,7 @@ uint8_t const configuration_descriptor[] = {
     0x02,                               // bNumInterfaces (2 interfaces)
     0x01,                               // bConfigurationValue
     0x00,                               // iConfiguration
-    TUSB_DESC_CONFIG_ATT_SELF_POWERED,   // bmAttributes
+    TUSB_DESC_CONFIG_ATT_SELF_POWERED,  // bmAttributes
     40,                                 // bMaxPower (80mA)
 
     // Interface Descriptor (Keyboard)
@@ -113,12 +113,12 @@ uint8_t const configuration_descriptor[] = {
 
 
     // HID Descriptor (Keyboard)
-    0x09,                               // bLength
+    0x09,                                // bLength
     TUD_HID_DESC_LEN,                    // bDescriptorType
     0x11, 0x01,                          // bcdHID (1.11)
     0x00,                                // bCountryCode
     0x01,                                // bNumDescriptors
-    TUSB_DESC_HID_REPORT,                // bDescriptorType (Report)
+    0x01,                 // bDescriptorType
     sizeof(desc_hid_report_keyboard),    // wDescriptorLength
 
 
@@ -143,12 +143,13 @@ uint8_t const configuration_descriptor[] = {
 
 
     // HID Descriptor (Mouse)
-    0x09,                               // bLength
+    0x09,                                // bLength
     TUD_HID_DESC_LEN,                    // bDescriptorType
     0x11, 0x01,                          // bcdHID (1.11)
     0x00,                                // bCountryCode
     0x01,                                // bNumDescriptors
-    TUSB_DESC_HID_REPORT,                // bDescriptorType (Report)
+    //TUSB_DESC_HID_REPORT,                // bDescriptorType (Report)
+    0x01,  // bDescriptorType
     sizeof(desc_hid_report_mouse),       // wDescriptorLength
 
 

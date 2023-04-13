@@ -12,6 +12,9 @@
 
 
 int main() {
+
+    tusb_init();
+
     while (true) {
         // Main loop
     }
