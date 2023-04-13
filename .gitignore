@@ -1,0 +1,19 @@
+# Ignore everything 
+./* 
+./**
+./**/**
+
+#Whitelist this file 
+!./.gitignore
+# Whitelist binaries
+!./bin/
+!./bin/*
+!./bin/**
+# Whitelist scripts I use 
+!./*.sh 
+# Whitelist source files 
+!./src/
+!./src/**
+#Whitelist libraries and headers 
+!./include/
+!./include/**
