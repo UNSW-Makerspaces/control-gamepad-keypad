@@ -97,7 +97,7 @@ uint8_t const configuration_descriptor[] = {
     0x02,                               // bNumInterfaces (2 interfaces)
     0x01,                               // bConfigurationValue
     0x00,                               // iConfiguration
-    TUSB_DESC_CONFIG_ATT_BUS_POWER,     // bmAttributes (bus-powered)
+    TUSB_DESC_CONFIG_ATT_SELF_POWERED,   // bmAttributes
     40,                                 // bMaxPower (80mA)
 
     // Interface Descriptor (Keyboard)
@@ -111,14 +111,16 @@ uint8_t const configuration_descriptor[] = {
     0x01,                               // bInterfaceProtocol (Keyboard)
     0x00,                               // iInterface
 
+
     // HID Descriptor (Keyboard)
     0x09,                               // bLength
-    TUSB_DESC_HID,                      // bDescriptorType
-    0x11, 0x01,                         // bcdHID (HID 1.11)
-    0x00,                               // bCountryCode
-    0x01,                               // bNumDescriptors
-    TUSB_DESC_REPORT,                   // bDescriptorType
-    sizeof(desc_hid_report_keyboard),   // wDescriptorLength
+    TUD_HID_DESC_LEN,                    // bDescriptorType
+    0x11, 0x01,                          // bcdHID (1.11)
+    0x00,                                // bCountryCode
+    0x01,                                // bNumDescriptors
+    TUSB_DESC_HID_REPORT,                // bDescriptorType (Report)
+    sizeof(desc_hid_report_keyboard),    // wDescriptorLength
+
 
     // Endpoint Descriptor (Keyboard)
     0x07,                               // bLength
@@ -139,14 +141,16 @@ uint8_t const configuration_descriptor[] = {
     0x02,                               // bInterfaceProtocol (Mouse)
     0x00,                               // iInterface
 
+
     // HID Descriptor (Mouse)
     0x09,                               // bLength
-    TUSB_DESC_HID,                      // bDescriptorType
-    0x11, 0x01,                         // bcdHID (HID 1.11)
-    0x00,                               // bCountryCode
-    0x01,                               // bNumDescriptors
-    TUSB_DESC_REPORT,                   // bDescriptorType
-    sizeof(desc_hid_report_mouse),      // wDescriptorLength
+    TUD_HID_DESC_LEN,                    // bDescriptorType
+    0x11, 0x01,                          // bcdHID (1.11)
+    0x00,                                // bCountryCode
+    0x01,                                // bNumDescriptors
+    TUSB_DESC_HID_REPORT,                // bDescriptorType (Report)
+    sizeof(desc_hid_report_mouse),       // wDescriptorLength
+
 
     // Endpoint Descriptor (Mouse)
     0x07,                               // bLength
