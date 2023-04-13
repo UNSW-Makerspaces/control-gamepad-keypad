@@ -9,6 +9,9 @@
 !./bin/
 !./bin/*
 !./bin/**
+# Whitelist CMake build files 
+!./CMakeLists.txt
+!./*.cmake
 # Whitelist scripts I use 
 !./*.sh 
 # Whitelist source files 
