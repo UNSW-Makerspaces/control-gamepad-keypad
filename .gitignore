@@ -1,23 +1,7 @@
-# Ignore everything 
-*
-./* 
-./**
-./**/**
+build/
+build/**
 
-#Whitelist this file 
-!./.gitignore
-# Whitelist binaries
-!./bin/
-!./bin/*
-!./bin/**
-# Whitelist CMake build files 
-!./CMakeLists.txt
-!./*.cmake
-# Whitelist scripts I use 
-!./*.sh 
-# Whitelist source files 
-!./src/
-!./src/**
-#Whitelist libraries and headers 
-!./include/
-!./include/**
+bin/
+bin/**
+
+

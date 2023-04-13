@@ -16,9 +16,8 @@
 #define LED_PIN 17
 #define LED_LENGTH 1
 
-enum _led_setcolor { LED_RED LED_GREEN LED_BLUE LED_WHITE };
-typedef LedColor _led_setcolor; 
-update_led(LedColor col); 
+enum LedColor { LED_RED, LED_GREEN, LED_BLUE, LED_WHITE };
+void update_led(PicoLED led, LedColor col); 
 
 int main() {
 
@@ -38,8 +37,11 @@ int main() {
 
 
     while (true) {
+        update_led(led, LED_WHITE)
         // Main loop
+        sleep_ms(50);
     }
+
 
     return 0;
 }

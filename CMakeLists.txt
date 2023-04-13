@@ -25,6 +25,7 @@ target_include_directories(usb_keypad PRIVATE
 # Link the pico-sdk and tinyusb libraries
 target_link_libraries(usb_keypad 
     pico_stdlib
+    hardware_pio
     pico_binary_info
     tinyusb_device 
     tinyusb_board
