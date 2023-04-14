@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.12)
 
+# Add the PICOMACHINE_DEBUG_MODE option
 option(PICOMACHINE_DEBUG_MODE "Enable debug mode" OFF)
 
+# If the option is enabled, add the compile definition
 if(PICOMACHINE_DEBUG_MODE)
     add_compile_definitions(PICOMACHINE_DEBUG_MODE)
 endif()
@@ -19,6 +21,7 @@ include(pico_sdk_import.cmake)
 # Initialize the SDK
 pico_sdk_init()
 
+add_subdirectory(debug)
 add_subdirectory(monitor)
 add_subdirectory(event)
 

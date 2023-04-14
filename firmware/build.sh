@@ -28,6 +28,7 @@ function build_project() {
 
     if [ "$1" == "Debug" ]; then
         DEBUG_FLAG="_debug"
+        #cmake -DPICOMACHINE_DEBUG_MODE=ON ..
     fi
 
     if [ ! -d "../$BIN_DIR" ]; then
