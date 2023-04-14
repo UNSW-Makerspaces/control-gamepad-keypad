@@ -7,30 +7,41 @@
 class PicoLED {
     public:
         enum DataByte {
-            NONE=0,
-            RED=1,
-            GREEN=2,
-            BLUE=3,
-            WHITE=4
+            NONE =  0,
+            RED =   1,
+            GREEN = 2,
+            BLUE =  3,
+            WHITE = 4
         };
         enum DataFormat {
-            FORMAT_RGB=0,
-            FORMAT_GRB=1,
-            FORMAT_WRGB=2
+            FORMAT_RGB  =   0,
+            FORMAT_GRB  =   1,
+            FORMAT_WRGB =   2
         };
 
         PicoLED(uint pin, uint length, PIO pio, uint sm);
         PicoLED(uint pin, uint length, PIO pio, uint sm, DataFormat format);
-        PicoLED(uint pin, uint length, PIO pio, uint sm, DataByte b1, DataByte b2, DataByte b3);
-        PicoLED(uint pin, uint length, PIO pio, uint sm, DataByte b1, DataByte b2, DataByte b3, DataByte b4);
+        PicoLED(uint pin, uint length, PIO pio, 
+                uint sm, DataByte b1, DataByte b2, DataByte b3);
+        PicoLED(uint pin, uint length, PIO pio, 
+                uint sm, DataByte b1, DataByte b2, DataByte b3, DataByte b4);
         ~PicoLED();
 
         static uint32_t RGB(uint8_t red, uint8_t green, uint8_t blue) {
-            return (uint32_t)(blue) << 16 | (uint32_t)(green) << 8 | (uint32_t)(red);
+            return (
+                    (uint32_t)(blue) << 16 
+                    | (uint32_t)(green) << 8 
+                    | (uint32_t)(red)
+                   );
         };
 
         static uint32_t RGBW(uint8_t red, uint8_t green, uint8_t blue, uint8_t white) {
-            return (uint32_t)(white) << 24 | (uint32_t)(blue) << 16 | (uint32_t)(green) << 8 | (uint32_t)(red);
+            return (
+                    (uint32_t)(white) << 24 
+                    | (uint32_t)(blue) << 16 
+                    | (uint32_t)(green) << 8 
+                    | (uint32_t)(red)
+                   );
         }
 
         void setPixelColor(uint index, uint32_t color);
@@ -49,9 +60,10 @@ class PicoLED {
         DataByte bytes[4];
         uint32_t *data;
 
-        void initialize(uint pin, uint length, PIO pio, uint sm, DataByte b1, DataByte b2, DataByte b3, DataByte b4);
+        void initialize(uint pin, uint length, PIO pio, 
+                uint sm, DataByte b1, DataByte b2, DataByte b3, DataByte b4);
         uint32_t convertData(uint32_t rgbw);
 
 };
 
-#endif
+#endif // PicoLED_H

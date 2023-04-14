@@ -1,12 +1,3 @@
-// -----------------------------------------------------
-// NOTE: THIS HEADER IS ALSO INCLUDED BY ASSEMBLER SO
-//       SHOULD ONLY CONSIST OF PREPROCESSOR DIRECTIVES
-// -----------------------------------------------------
-
-#define PICOGAMEPAD 
-#ifndef _BOARDS_PICOGAMEPAD_V3A_H
-#define _BOARDS_PICOGAMEPAD_V3A_H 
-
 // ========================================================
 // PIN AND PERIPHERAL DEFAULTS: 
 // =====================
@@ -55,17 +46,15 @@
 // Flash QSPI Clock Rate
 #ifndef PICO_FLASH_SPI_CLKDIV
 #define PICO_FLASH_SPI_CLKDIV 2
-#endif
+#endif // PICO_FLASH_SPI_CLKDIV
 
 // Flash Memory size (BYTES, NOT BITS)
 // In our case, 16MBit = 16/8 = 2MBytes 
 #ifndef PICO_FLASH_SIZE_BYTES
-#define PICO_FLASH_SIZE_BYTES (16 * 1024 * 1024)
-#endif
+#define PICO_FLASH_SIZE_BYTES (2 * 1024 * 1024)
+#endif // PICO_FLASH_SIZE_BYTES
 
 // All boards have B1 RP2040
 #ifndef PICO_RP2040_B0_SUPPORTED
 #define PICO_RP2040_B0_SUPPORTED 0
-#endif
-
-#endif
+#endif // PICO_RP2040_B0_SUPPORTED

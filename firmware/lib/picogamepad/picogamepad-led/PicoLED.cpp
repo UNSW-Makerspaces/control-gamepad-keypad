@@ -25,11 +25,13 @@ PicoLED::PicoLED(uint pin, uint length, PIO pio, uint sm, DataFormat format) {
     }
 }
 
-PicoLED::PicoLED(uint pin, uint length, PIO pio, uint sm, DataByte b1, DataByte b2, DataByte b3) {
+PicoLED::PicoLED(uint pin, uint length, PIO pio, 
+        uint sm, DataByte b1, DataByte b2, DataByte b3) {
     initialize(pin, length, pio, sm, b1, b1, b2, b3);
 }
 
-PicoLED::PicoLED(uint pin, uint length, PIO pio, uint sm, DataByte b1, DataByte b2, DataByte b3, DataByte b4) {
+PicoLED::PicoLED(uint pin, uint length, PIO pio, 
+        uint sm, DataByte b1, DataByte b2, DataByte b3, DataByte b4) {
     initialize(pin, length, pio, sm, b1, b2, b3, b4);
 }
 
@@ -37,7 +39,8 @@ PicoLED::~PicoLED() {
     
 }
 
-void PicoLED::initialize(uint pin, uint length, PIO pio, uint sm, DataByte b1, DataByte b2, DataByte b3, DataByte b4) {
+void PicoLED::initialize(uint pin, uint length, PIO pio, 
+        uint sm, DataByte b1, DataByte b2, DataByte b3, DataByte b4) {
     this->pin = pin;
     this->length = length;
     this->pio = pio;
@@ -47,12 +50,13 @@ void PicoLED::initialize(uint pin, uint length, PIO pio, uint sm, DataByte b1, D
     this->bytes[1] = b2;
     this->bytes[2] = b3;
     this->bytes[3] = b4;
-    uint offset = pio_add_program(pio, &ws2812_program);
+    uint offset = pio_add_program(pio, &picogamepad_led_program);
     uint bits = (b1 == NONE ? 24 : 32);
     #ifdef DEBUG
-    printf("PicoLED / Initializing SM %u with offset %X at pin %u and %u data bits...\n", sm, offset, pin, bits);
+    printf("PicoLED / Initializing SM %u with offset %X at pin %u and %u data bits...\n", 
+            sm, offset, pin, bits);
     #endif
-    ws2812_program_init(pio, sm, offset, pin, 800000, bits);
+    picogamepad_led_program_init(pio, sm, offset, pin, 800000, bits);
 }
 
 uint32_t PicoLED::convertData(uint32_t rgbw) {
