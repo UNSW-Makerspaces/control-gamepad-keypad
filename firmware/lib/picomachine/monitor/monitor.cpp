@@ -44,5 +44,27 @@ void Machine::update_led_color() {
     }
 }
 
+void Machine::start() {
+    if (state == State::WAIT || state == State::IDLE) {
+        set_state(State::STARTING);
+    }
+}
 
+void Machine::stop() {
+    if (state == State::RUNNING) {
+        set_state(State::STOPPING);
+    }
+}
 
+void Machine::pause() {
+    if (state == State::RUNNING) {
+        timestamp_paused = time(NULL);
+        set_state(State::IDLE);
+    }
+}
+
+void Machine::restart() {
+    if (state == State::IDLE) {
+        set_state(State::STARTING);
+    }
+}

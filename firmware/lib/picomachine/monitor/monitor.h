@@ -35,12 +35,25 @@ public:
     LED_Color get_led_color() const;
 
     void set_state(State new_state);
+    void start();
+    void stop();
+    void pause();
+    void restart();
 
 private:
     void update_led_color();
 
     State state;
     LED_Color led_color;
+    float starting_progress;
+    float stopping_progress;
+    float time_running_total;
+    float time_running;
+    float estimate_done;
+    float time_idle_total;
+    float time_idle;
+    unsigned long timestamp_paused;
 };
+
 
 #endif // MONITOR_H
