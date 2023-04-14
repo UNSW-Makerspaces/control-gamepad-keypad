@@ -131,21 +131,90 @@ void Machine::stop() {
 
 void Machine::pause() {
 
-    // FIXME: Add entry debug message to indicate the pause() function is called
+    // Entry debug message to indicate the pause() function is called
+    picomachine_debug_log("picomachine", "Machine", "pause", "Entering pause() function");
+
     if (state == State::RUNNING) {
         timestamp_paused = get_absolute_time();
         set_state(State::IDLE);
-        // FIXME: Add exit debug message to indicate machine is pausing
+        // Exit debug message to indicate machine is pausing
+        picomachine_debug_log("picomachine", "Machine", "pause", "Machine is pausing");
+    } else {
+        // Machine cannot be paused in its current state
+        picomachine_debug_log("picomachine", "Machine", "pause", "Machine cannot be paused in its current state");
     }
+
+    return;
 }
 
 void Machine::restart() {
-    // FIXME: Add entry debug message to indicate the restart() function is called
+
+    picomachine_debug_log("picomachine", "Machine", "restart", "Entering restart() function");
+
     if (state == State::IDLE) {
-        set_state(State::STARTING);
-        timestamp_started = get_absolute_time();
-        // FIXME: Add exit debug message to indicate machine is restarting
+
+        // Debug message to indicate machine is restarting from paused state
+        picomachine_debug_log("picomachine", "Machine", "restart", 
+            "Restarting from paused state");
+
+        stop(); // Stop the machine if it's in idle state
+                
+        start(); // Start the machine again
+
+        // Check if the machine started successfully
+        if (state != State::RUNNING) {
+            picomachine_debug_log("picomachine", "Machine", "restart", 
+                "Failed to start the machine after pausing");
+        }
+
+    } else if (state == State::RUNNING) {
+        // Debug message that machine was restarted mid-job without pausing
+        picomachine_debug_log("picomachine", "Machine", "restart", 
+            "Restarting mid-job without pausing");
+
+        stop(); // Stop the machine if it's in running state
+
+        // Check if the machine stopped successfully
+        if (state != State::STOPPING) {
+
+            pause(); // Attempt machine state rescue with pause
+                     
+            if (state == State::IDLE) {
+                start(); // Start the machine again if it successfully paused
+            } else {
+                // Machine failed to stop and pause, entering a critical error state
+                picomachine_debug_log("picomachine", "Machine", "restart", 
+                    "Critical error: failed to stop and pause the machine");
+                // Set the LED to LED_RED
+                led_color = LED_Color::LED_RED;
+                // Add an attribute "LED_BLINK"
+                uint16_t LED_BLINK = 150; // ms delay for the LED to blink
+                return;
+            }
+
+        } else {
+
+            picomachine_debug_log("picomachine", "Machine", "restart", 
+                    "Machine stopped successfully, restarting the job");
+
+            start(); // Start the machine again
+                     
+        }
+
+    } else {
+
+        // Job was asked to restart in an invalid state
+        picomachine_debug_log("picomachine", "Machine", "restart", 
+            "Job was asked to restart in an invalid state");
+
+        return;
+
     }
+
+    // Job was successfully restarted
+    picomachine_debug_log("picomachine", "Machine", "restart", "Job successfully restarted");
+
+    return;
 }
 
 float Machine::get_elapsed_time_idle() const {

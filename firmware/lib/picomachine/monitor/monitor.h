@@ -56,6 +56,7 @@ private:
 
     State state;
     LED_Color led_color;
+    uint16_t LED_BLINK = 0;
     float starting_progress;
     float stopping_progress;
     float time_running_total;
