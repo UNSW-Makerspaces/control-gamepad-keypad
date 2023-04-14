@@ -5,7 +5,9 @@
  *
  */
 
+#ifndef PICOMACHINE_MONITOR_H
 #include "monitor.h"
+#endif // PICOMACHINE_MONITOR_H
 
 Machine::Machine() {
     state = State::WAIT;
@@ -141,7 +143,8 @@ void Machine::pause() {
         picomachine_debug_log("picomachine", "Machine", "pause", "Machine is pausing");
     } else {
         // Machine cannot be paused in its current state
-        picomachine_debug_log("picomachine", "Machine", "pause", "Machine cannot be paused in its current state");
+        picomachine_debug_log("picomachine", "Machine", "pause", 
+                "Machine cannot be paused in its current state");
     }
 
     return;

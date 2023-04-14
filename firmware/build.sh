@@ -7,6 +7,9 @@ BIN_DIR="bin"
 DEBUG_FLAG=""
 PROJECT_NAME="usb_keypad"
 
+OLD_PWD="$PWD"
+cd $PROJECT_ROOT_DIR
+
 function help() {
     echo "Usage: $0 [OPTION]"
     echo "Options:"
@@ -64,4 +67,4 @@ case "$1" in
         ;;
 esac
 
-
+cd $OLD_PWD

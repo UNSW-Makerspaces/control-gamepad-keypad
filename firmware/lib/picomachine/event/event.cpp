@@ -2,32 +2,23 @@
  * Author: Michael W. Lloyd
  * Email: micl_dev@protonmail.com
  * Date: 14/04/2023
- *
  */
 
-#include "event.h"
+#ifndef PICOMACHINE_EVENT_H
 #include "monitor.h"
+#endif // PICOMACHINE_EVENT_H
+       //
+#ifndef PICOMACHINE_EVENT_TEMPLATE
+#include "event.tpp"
+#endif // PICOMACHINE_EVENT_TEMPLATE
+       //
+template <typename T>
+class Event {
+public:
+    static void start(T &mach);
+    static void stop(T &mach);
+    static void pause(T &mach);
+    static void restart(T &mach);
+};
 
-void Event::start(Machine &machine) {
-    if (machine.get_state() == State::WAIT || machine.get_state() == State::IDLE) {
-        machine.set_state(State::STARTING);
-    }
-}
 
-void Event::stop(Machine &machine) {
-    if (machine.get_state() == State::RUNNING) {
-        machine.set_state(State::STOPPING);
-    }
-}
-
-void Event::pause(Machine &machine) {
-    if (machine.get_state() == State::RUNNING) {
-        machine.set_state(State::IDLE);
-    }
-}
-
-void Event::restart(Machine &machine) {
-    if (machine.get_state() == State::IDLE) {
-        machine.set_state(State::STARTING);
-    }
-}

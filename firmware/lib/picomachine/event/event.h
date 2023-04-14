@@ -4,8 +4,8 @@
  * Date: 14/04/2023
  */
 
-#ifndef EVENT_H
-#define EVENT_H
+#ifndef PICOMACHINE_EVENT_H
+#define PICOMACHINE_EVENT_H
 
 #include "monitor.h"
 
@@ -15,8 +15,7 @@ public:
     static void stop(Machine &machine);
     static void pause(Machine &machine);
     static void
-#endif // EVENT_H
     restart(Machine &machine);
 };
 
-#endif // EVENT_H
+#endif // PICOMACHINE_EVENT_H

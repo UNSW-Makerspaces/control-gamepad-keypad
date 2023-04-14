@@ -33,3 +33,22 @@ target_link_libraries(usb_keypad
 
 # Create map/bin/hex/uf2 files
 pico_add_extra_outputs(usb_keypad)
+
+#find_program(CPPCHECK_EXECUTABLE NAMES cppcheck)
+#if(CPPCHECK_EXECUTABLE)
+#    add_custom_target(cppcheck
+#        COMMAND ${CPPCHECK_EXECUTABLE}
+#            --enable=all
+#            --std=c++17
+#            --language=c++
+#            --platform=native
+#            --suppress=missingIncludeSystem
+#            --force
+#            --inline-suppr
+#            -I include/
+#            -I src/
+#            src/
+#            include/
+#        COMMENT "Running cppcheck"
+#    )
+#endif()

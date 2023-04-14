@@ -5,11 +5,8 @@
  *
  */
 
-#ifndef MONITOR_H
-#define MONITOR_H
-
-
-
+#ifndef PICOMACHINE_MONITOR_H
+#define PICOMACHINE_MONITOR_H
 
 enum class State {
     IDLE,
@@ -60,4 +57,4 @@ private:
 };
 
 
-#endif // MONITOR_H
+#endif // PICOMACHINE_MONITOR_H
