@@ -56,8 +56,24 @@ public:
      *      }
      */
 
+    // Subscribe a callback function to be called when the event occurs
+    void subscribe(void (*callback)(T));
+
+    // Determine if this event is interested in the given data
+    virtual bool is_interested(const T& data) = 0;
+
+    // Determine if the event has completed its lifecycle
+    virtual bool is_completed() = 0;
+
+    // Dispose of the event and perform any necessary cleanup
+    virtual void dispose() = 0;
+
 protected:
+    // FIXME: Comment
     queue_t fbBuf;
+
+    // List of subscribed callback functions
+    std::vector<void (*)(T)> subscribers;
 
 private:
     uint32_t buffer_size;
@@ -65,6 +81,6 @@ private:
 
 #ifndef PICOMACHINE_EVENT_TEMPLATE
 #include "event.tpp"
-#endif //P ICOMACHINE_EVENT_TEMPLATE 
+#endif // PICOMACHINE_EVENT_TEMPLATE 
 
 #endif // PICOMACHINE_EVENT_H
