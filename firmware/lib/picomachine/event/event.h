@@ -46,9 +46,10 @@ public:
 
     // Update the event state and possibly call handle_event()
     // Implemented by subclasses 
-    virtual void update();
+    virtual void update() = 0;
     // NOTE: Implementations should go something along the lines of: 
-    /**     T data;
+    /**     
+     *      T data;
      *      while (dequeue(data)) {
      *          Perform any preprocessing or filtering here, if needed
      *          handle_event();
