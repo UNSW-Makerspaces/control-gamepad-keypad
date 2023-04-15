@@ -9,13 +9,18 @@
 
 #include "monitor.h"
 
-class Event {
+template <typename T>
+class PicoMachine_Event {
 public:
-    static void start(Machine &machine);
-    static void stop(Machine &machine);
-    static void pause(Machine &machine);
-    static void
-    restart(Machine &machine);
+    explicit PicoMachine_Event(Machine &machine);
+    
+    void update();
+    void handle_event(T event);
+
+private:
+    Machine &machine;
 };
+
+#include "event.tpp"
 
 #endif // PICOMACHINE_EVENT_H

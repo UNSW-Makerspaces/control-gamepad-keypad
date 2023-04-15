@@ -32,22 +32,3 @@ add_subdirectory(monitor)
 add_subdirectory(event)
 
 target_link_libraries(picomachine pico_stdlib monitor event)
-
-#find_program(CPPCHECK_EXECUTABLE NAMES cppcheck)
-#if(CPPCHECK_EXECUTABLE)
-#    add_custom_target(cppcheck
-#        COMMAND ${CPPCHECK_EXECUTABLE}
-#            --enable=all
-#            --std=c++17
-#            --language=c++
-#            --platform=native
-#            --suppress=missingIncludeSystem
-#            --force
-#            --inline-suppr
-#            -I include/
-#            -I src/
-#            src/
-#            include/
-#        COMMENT "Running cppcheck"
-#    )
-#endif()

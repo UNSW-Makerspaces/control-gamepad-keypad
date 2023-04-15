@@ -5,20 +5,11 @@
  */
 
 #ifndef PICOMACHINE_EVENT_H
-#include "monitor.h"
+#include "event.h"
 #endif // PICOMACHINE_EVENT_H
-       //
+       
 #ifndef PICOMACHINE_EVENT_TEMPLATE
 #include "event.tpp"
 #endif // PICOMACHINE_EVENT_TEMPLATE
-       //
-template <typename T>
-class Event {
-public:
-    static void start(T &mach);
-    static void stop(T &mach);
-    static void pause(T &mach);
-    static void restart(T &mach);
-};
 
-
+// EOF

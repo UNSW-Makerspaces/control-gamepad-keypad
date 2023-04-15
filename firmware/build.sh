@@ -20,19 +20,26 @@ function help() {
     echo ""
 }
 
+
+DEBUG_FLAG="-DPICOMACHINE_DEBUG_MODE=ON"
+CAREFUL_FLAG="-DPICOMACHINE_CAREFUL=ON"
+declare -a CMAKE_FLAG_STRS
+CMAKE_FLAG_STRS=();
+
 function build_project() {
+
+        CMAKE_FLAG_STRS+="-DCMAKE_BUILD_TYPE=${1}"
+
+    # FIXME: Parse input strings for flags  
+
     if [ ! -d "$BUILD_DIR" ]; then
-        mkdir "$BUILD_DIR"
+        mkdir -p "$BUILD_DIR"
     fi
 
+    # Array of flags to be appended to cmake call 
     cd "$BUILD_DIR"
-    cmake -DCMAKE_BUILD_TYPE="$1" ..
+    cmake  ..
     make
-
-    if [ "$1" == "Debug" ]; then
-        DEBUG_FLAG="_debug"
-        #cmake -DPICOMACHINE_DEBUG_MODE=ON ..
-    fi
 
     if [ ! -d "../$BIN_DIR" ]; then
         mkdir -p "../$BIN_DIR"
@@ -57,7 +64,8 @@ case "$1" in
     "")
         build_project "Release"
         cd "$BUILD_DIR"
-        mv "$PROJECT_NAME.bin" "$PROJECT_NAME.uf2" "$PROJECT_NAME.hex" "$PROJECT_NAME.elf" "../$BIN_DIR"
+        mv "$PROJECT_NAME.bin" "$PROJECT_NAME.uf2" \
+            "$PROJECT_NAME.hex" "$PROJECT_NAME.elf" "../$BIN_DIR"
         cd ..;
         ;;
     *)
