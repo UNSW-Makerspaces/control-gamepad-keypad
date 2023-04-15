@@ -12,6 +12,7 @@ To use the source code (here), you will probably need:
 - cmake (3.12 or newer) 
 - libc++
 - glibc
+- gtest
 
 
 ## Building
